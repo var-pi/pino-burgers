@@ -26,7 +26,7 @@ def main():
 		return torch.mean((u0_pred - u0_true)**2)
 
 	# train_loss = lambda o, **s: p_loss(o, **s)+ic_loss(o, **s)
-	train_loss = lambda o, **s: 0.8*ic_loss(o, **s) * mse(o, **s)
+	train_loss = lambda o, **s: ic_loss(o, **s) + mse(o, **s)
 	eval_losses = {'mse': mse, 'ic_loss': train_loss}
 
 	trainer = Trainer(
